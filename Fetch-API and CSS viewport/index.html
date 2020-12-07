@@ -41,6 +41,10 @@
         margin: 0;
         display: flex;
         justify-content: center;
+        background-image:
+        url("https://images.unsplash.com/photo-1543598098-622a5e218f43?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80");
+        background-repeat: no-repeat;
+        background-size: cover;
     }
 
     /* using media queries */
@@ -87,9 +91,9 @@
                 let table_cells = document.createElement('tr');
                 // inserting innerHTML
                 table_cells.classList.add('tr-class', 'tb-class')
-                table_cells.innerHTML = '<td>' + user.id + '</td>' 
-                                        + '<td>' + user.title + '</td>' 
-                                        + '<td>' +  user.completed + '</td>';
+                table_cells.innerHTML = `<td> ${user.id} </td> 
+                                        <td> ${user.title} </td> 
+                                        <td> ${user.completed} </td>`;
                 console.log(table_cells)
 
                 // appending table cells
