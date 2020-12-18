@@ -6,11 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fetch-API-and-Viewport</title>
     <link rel="stylesheet" href="./main.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Langar&display=swap" rel="stylesheet">
 </head>
 
 <body>
+    <div class="users-section">
 
+        <h1>
+            Add a Task
+        </h1>
+        <div class="wrapper">
+            <label for="Title">Title</label>
+            <input type="text" class="add" id="Title">
+            <button class="addUser">Add Task</button>
+        </div>
+
+        <div class="wrapper">
+            <h2>Assign User</h2>
+            <select name="users-select" class="users-select">
+            </select>
+        </div>
+    </div>
+    <h2 class="fixit">To do List</h2>
     <div class="table-holder">
+
         <table id="data-table">
             <tr id="header">
                 <th>UserID</th>
@@ -20,14 +40,7 @@
             </tr>
         </table>
     </div>
-    <div class="users-section">
-        <h1>
-            Add a User
-        </h1>
-        <select name="users-select"  class="users-select">
 
-        </select>
-    </div>
     <script src="./script.js"></script>
 </body>
 
