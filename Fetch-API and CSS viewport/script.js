@@ -1,4 +1,4 @@
-// TODO Add userId instead of 'name' (modify createTodo function)
+// TODO Add userId instead of 'name' (modify createTodo function) done
 // TODO When checking or unchecking a todo, use an event listener to modify data
 // TODO UI Improvements remove users section and add input field with dropdown aboth table (look like a tr)
 // TODO UI Improvements - improve layout by removing scrolling from document and have elements take up 100% of screen
@@ -14,15 +14,6 @@ let custom_Title = document.querySelector("#Title");
 let custom_Completed = document.querySelector("#Completed");
 const user_section = document.querySelector(".user-section");
 const select = document.querySelector(".users-select");
-const add_custom_user = document.querySelector(".addUser");
-select.onchange = function () {
-  console.log("works");
-};
-
-// Display userIDs instead of ids
-// remove userID, id, completed inputs
-// generate new I.d for select from the length of todos and add 1
-//
 const URL = "https://jsonplaceholder.typicode.com/todos";
 let data = [];
 
@@ -61,35 +52,55 @@ const manipulateIds = (arg) => {
   return obj;
 };
 
-function renderInitialTodoList(arg) {
+const renderInitialTodoList = (arg) => {
   for (todo of arg) {
     addTodoInTheList(todo);
   }
+  let checkboxes = document.querySelector('.check');
+  console.log(checkboxes)
 }
 
 const addTodoInTheList = (todo) => {
   let table_cells = document.createElement("tr");
   table_cells.classList.add("tr-class", "tb-class");
   table_cells.innerHTML = `<td> ${todo.userId} </td> 
-                                      <td> ${todo.title} </td> 
-                                      <td> ${todo.completed} </td>
-                                      <td>${createInput(todo)}</td>`;
+  <td> ${todo.title} </td> 
+  <td> ${todo.completed} </td>
+  `;
+  table_cells.appendChild(createInput(todo));
+  table_cells.appendChild(createDelBtn(todo))
   document.querySelector("#data-table").appendChild(table_cells);
-};
+  // console.log(createInput(todo))
 
+
+};
 const createInput = (arg) => {
-  let input = `<input type = "checkbox">`;
-  if (arg.completed) {
-    input = `<input type = "checkbox" checked>`;
-  }
-  return input;
+  let td = document.createElement('td');
+  let checkbox = document.createElement('input');
+  checkbox.type = 'checkbox';
+  checkbox.classList.add = 'check';
+  checkbox.checked = arg.completed !== true ? checkbox.checked = false : checkbox.checked = true;
+  checkbox.addEventListener('click',function(e){
+    console.log(checkbox.checked)
+  })
+  td.appendChild(checkbox)
+  return td;
 };
-
-const createTodo = (title, arg) => {
+const createTodo = (title, userId, arg) => {
   return {
-    userId: "name",
+    userId: select.value,
     id: data.length + 1,
     title,
     completed: false,
   };
 };
+const createDelBtn = (todo) => {
+  let td = document.createElement('td');
+  const dltBtn = document.createElement('button');
+  dltBtn.innerText = 'Delete';
+  dltBtn.addEventListener('click',function(e){
+    console.log('works')
+  })
+  td.appendChild(dltBtn)
+  return td
+}

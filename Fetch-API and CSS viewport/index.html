@@ -12,31 +12,26 @@
 
 <body>
     <div class="users-section">
-
-        <h1>
-            Add a Task
-        </h1>
-        <div class="wrapper">
-            <label for="Title">Title</label>
-            <input type="text" class="add" id="Title">
-            <button class="addUser">Add Task</button>
-        </div>
-
-        <div class="wrapper">
-            <h2>Assign User</h2>
-            <select name="users-select" class="users-select">
-            </select>
-        </div>
+        <h1 class="fixit">To do List</h1>
     </div>
-    <h2 class="fixit">To do List</h2>
     <div class="table-holder">
-
+<span>Add Task : </span>
         <table id="data-table">
+            <tr class="wrapper">
+                <td><label for="Title">Title :</label></td>
+                <td><input type="text" class="add" id="Title">
+                </td>
+                <td><select name="users-select" class="users-select" aria-placeholder="Assign User">
+                    </select></td>
+                <td><button class="addUser">Add</button></td>
+            </tr>
+            
             <tr id="header">
                 <th>UserID</th>
-                <th>Title</th>
+                <th>Title </th>
                 <th>Completed</th>
                 <th>Check</th>
+                <th>Delete</th>
             </tr>
         </table>
     </div>

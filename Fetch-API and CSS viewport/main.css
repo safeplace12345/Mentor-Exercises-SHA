@@ -1,4 +1,6 @@
 * {
+  margin: 0;
+  padding: 0;
   font-family: "Langar", cursive;
   box-sizing: border-box;
 }
@@ -8,17 +10,14 @@
   margin: 10px auto;
 }
 .table-holder {
-  margin: 10px auto;
+  margin: 7px auto;
   border: 2px double white;
+  overflow-y: scroll;
+  max-height: 80vh;
 }
 table {
   background-color: teal;
   border: 2px solid red;
-}
-
-.table-holder {
-  overflow-y: scroll;
-  max-height: 100vh;
 }
 
 .tr-class {
@@ -36,13 +35,13 @@ table {
   text-transform: capitalize;
   padding: 5px;
 }
-.addUser {
-  margin-top: 10px;
+.addUser,select,input {
   border-radius: 7px;
-  padding: 5px 15px;
-  background-color: black;
+  background-color:cornflowerblue
   color: white;
+  text-align: center;
 }
+
 body {
   margin: 0;
   display: flex;
@@ -80,11 +79,28 @@ body {
     color: darkred;
   }
 }
-.add {
+/* .add {
   display: block;
   margin: 0 auto;
-}
+}*/
 select{
-    margin-bottom: 10px;
     width: 100px;
 }
+
+.users-section{
+  border: none;
+  margin-bottom: 0;
+  max-height: 20vh;
+}
+.addUser{
+  padding: 0 10px;
+}
+/* input{
+width: 394px;
+} */
+input:hover,button:hover,select:hover{
+border: 2px double orange;
+}
+/* .wrapper{
+  position: fixed;
+} */
