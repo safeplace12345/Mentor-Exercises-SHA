@@ -8,6 +8,7 @@
   border: 2px double white;
   width: 600px;
   margin: 10px auto;
+  background-color: midnightblue;
 }
 .table-holder {
   margin: 7px auto;
@@ -15,14 +16,25 @@
   overflow-y: scroll;
   max-height: 80vh;
 }
+.addTask{
+  border-bottom: 2px solid ghostwhite;
+  display: inline-block;
+  margin-bottom: 2px;
+}
 table {
   background-color: teal;
-  border: 2px solid red;
+  
 }
 
 .tr-class {
   border-collapse: collapse;
   padding: 5px;
+  border: 1px solid midnightblue;
+}
+th {
+  border-collapse: collapse;
+  padding: 0    10px;
+  border: 1px solid midnightblue;
 }
 
 .tb-class {
@@ -48,7 +60,6 @@ body {
   justify-content: center;
   background-image: url("https://images.unsplash.com/photo-1543598098-622a5e218f43?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80");
   background-repeat: no-repeat;
-  background-size: cover;
   flex-direction: column;
   color: white;
   text-align: center;
@@ -79,12 +90,10 @@ body {
     color: darkred;
   }
 }
-/* .add {
-  display: block;
-  margin: 0 auto;
-}*/
+
 select{
-    width: 100px;
+    width: 120px;
+    margin-right: -3px;
 }
 
 .users-section{
@@ -92,15 +101,30 @@ select{
   margin-bottom: 0;
   max-height: 20vh;
 }
-.addUser{
-  padding: 0 10px;
+.dltBtn{
+  padding: 0px 15px;
 }
-/* input{
-width: 394px;
-} */
-input:hover,button:hover,select:hover{
+.addUser{
+  padding: 0px 25px;
+}
+
+input:hover,.addUser:hover,select:hover{
 border: 2px double orange;
 }
-/* .wrapper{
-  position: fixed;
-} */
+.wrapper{
+  display: flex;
+  justify-content: space-between;
+  background-color: teal;
+}
+.add{
+  width: 46vw;
+  margin-left: 0px;
+}
+.dltBtn:hover{
+color: red;
+box-shadow: 2px 2px red;
+}
+
+label{
+  margin-left: 15px;
+}

@@ -1,43 +1,42 @@
-// TODO Add userId instead of 'name' (modify createTodo function) done
-// TODO When checking or unchecking a todo, use an event listener to modify data
-// TODO UI Improvements remove users section and add input field with dropdown aboth table (look like a tr)
+// TODO Add userId instead of 'name' (modify createTodo function)  DONE
+// TODO When checking or unchecking a todo, use an event listener to modify data 
+// TODO UI Improvements remove users section and add input field with dropdown aboth table (look like a tr) DONE
 // TODO UI Improvements - improve layout by removing scrolling from document and have elements take up 100% of screen
-// TODO refactoring
-// TODO Add a new button next to each todo, that would remove it from the list and data
-// BONUS add option for pressing enter instead of Add todo button
-
-
-// loop and create table elements
-
-// let custom_Id = document.querySelector('#Id');
-let custom_Title = document.querySelector("#Title");
-let custom_Completed = document.querySelector("#Completed");
-const user_section = document.querySelector(".user-section");
-const select = document.querySelector(".users-select");
-const URL = "https://jsonplaceholder.typicode.com/todos";
-let data = [];
+// TODO refactoring   DONE
+// TODO Add a new button next to each todo, that would remove it from the list and data   DONE
+// BONUS add option for pressing enter instead of Add todo button DONE
+let custom_Title, custom_Completed, user_section, select, URL, data_table, data, addUser_btn;
+custom_Title = document.querySelector("#Title");
+custom_Completed = document.querySelector("#Completed");
+user_section = document.querySelector(".user-section");
+select = document.querySelector(".users-select");
+URL = "https://jsonplaceholder.typicode.com/todos";
+data_table = document.querySelector('#data-table');
+data = [];
+addUser_btn = document.querySelector(".addUser");
+addUser_btn.addEventListener("click", addUserNow)
 
 async function startUp() {
   const response = await fetch(URL);
   data = await response.json();
   renderInitialTodoList(data);
-  createOptions(data);
+  createAllOptions(data);
   console.log(data.length);
 }
 startUp();
 
-const addUser_btn = document.querySelector(".addUser");
-addUser_btn.addEventListener("click", function (element) {
+function addUserNow(element) {
   let custom_Title = document.querySelector("#Title").value;
   let newTodo = createTodo(custom_Title);
   data.push(newTodo);
   addTodoInTheList(newTodo);
-});
+};
 
-const createOptions = (arg) => {
+
+const createAllOptions = (arg) => {
   for (user of manipulateIds(arg)) {
     const optionEl = document.createElement("option");
-    optionEl.innerHTML = user;
+    optionEl.innerHTML = 'User ' + user;
     optionEl.value = user;
     select.appendChild(optionEl);
   }
@@ -54,34 +53,33 @@ const manipulateIds = (arg) => {
 
 const renderInitialTodoList = (arg) => {
   for (todo of arg) {
-    addTodoInTheList(todo);
+    addTodoInTheList(todo, arg);
   }
-  let checkboxes = document.querySelector('.check');
-  console.log(checkboxes)
 }
 
-const addTodoInTheList = (todo) => {
-  let table_cells = document.createElement("tr");
-  table_cells.classList.add("tr-class", "tb-class");
-  table_cells.innerHTML = `<td> ${todo.userId} </td> 
+const addTodoInTheList = (todo, arg) => {
+  let table_cell = document.createElement("tr");
+  table_cell.classList.add("tr-class", "tb-class");
+  table_cell.setAttribute('id', todo.id)
+  table_cell.innerHTML = `<td> ${todo.userId} </td> 
   <td> ${todo.title} </td> 
-  <td> ${todo.completed} </td>
+  <td class='completed'> ${todo.completed} </td>
   `;
-  table_cells.appendChild(createInput(todo));
-  table_cells.appendChild(createDelBtn(todo))
-  document.querySelector("#data-table").appendChild(table_cells);
-  // console.log(createInput(todo))
-
-
+  appendToDataTable(table_cell,arg,table_cell);
 };
+const appendToDataTable =(cell,cellarg,Cell)=>{
+  cell.appendChild(createInput(todo));
+  cell.appendChild(createDelBtn(todo, cellarg, Cell))
+  data_table.appendChild(Cell);
+}
 const createInput = (arg) => {
   let td = document.createElement('td');
   let checkbox = document.createElement('input');
   checkbox.type = 'checkbox';
   checkbox.classList.add = 'check';
-  checkbox.checked = arg.completed !== true ? checkbox.checked = false : checkbox.checked = true;
-  checkbox.addEventListener('click',function(e){
-    console.log(checkbox.checked)
+  checkbox.checked = arg.completed !== true ? false : true;
+  checkbox.addEventListener('click', function (e) {
+    changeStatus(e, arg)
   })
   td.appendChild(checkbox)
   return td;
@@ -94,13 +92,27 @@ const createTodo = (title, userId, arg) => {
     completed: false,
   };
 };
-const createDelBtn = (todo) => {
+const createDelBtn = (todo, todoList, rowDlt) => {
   let td = document.createElement('td');
   const dltBtn = document.createElement('button');
-  dltBtn.innerText = 'Delete';
-  dltBtn.addEventListener('click',function(e){
-    console.log('works')
+  dltBtn.classList.add('dltBtn');
+  dltBtn.innerHTML += `<i class="fas fa-times"></i>`
+  dltBtn.addEventListener('click', function deleteToDo(e) {
+    todoList.splice(todoList.indexOf(todo), 1);
+    data_table.removeChild(rowDlt);
   })
   td.appendChild(dltBtn)
-  return td
+  return td;
+}
+const changeStatus = (e, arg) => {
+  if (e.target.checked) {
+    let id;
+    arg.completed = true;
+     id = document.getElementById(arg.id).children[2];
+    id.innerHTML = arg.completed;
+  } else if (!e.target.checked) {
+    arg.completed = false;
+     id = document.getElementById(arg.id).children[2];
+    id.innerHTML = arg.completed;
+  }
 }

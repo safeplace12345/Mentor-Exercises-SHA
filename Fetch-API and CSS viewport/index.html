@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./main.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Langar&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </head>
 
 <body>
@@ -15,17 +16,16 @@
         <h1 class="fixit">To do List</h1>
     </div>
     <div class="table-holder">
-<span>Add Task : </span>
+<span class="addTask">Add Task : </span>
+<div class="wrapper">
+    <label for="Title">Title :</label>
+    <input type="text" class="add" id="Title">
+    <select name="users-select" class="users-select" aria-placeholder="Assign User">
+        </select>
+    <button class="addUser"><i class="fas fa-plus-circle"></i></button>
+</div>
+
         <table id="data-table">
-            <tr class="wrapper">
-                <td><label for="Title">Title :</label></td>
-                <td><input type="text" class="add" id="Title">
-                </td>
-                <td><select name="users-select" class="users-select" aria-placeholder="Assign User">
-                    </select></td>
-                <td><button class="addUser">Add</button></td>
-            </tr>
-            
             <tr id="header">
                 <th>UserID</th>
                 <th>Title </th>
