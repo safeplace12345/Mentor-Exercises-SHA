@@ -1,0 +1,15 @@
+{
+  "name": "todo-app",
+  "version": "1.0.0",
+  "description": "todo-app",
+  "main": "base.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup script.js --file base.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "rollup": "^2.35.1"
+  }
+}

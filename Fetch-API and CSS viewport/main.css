@@ -49,7 +49,7 @@ th {
 }
 .addUser,select,input {
   border-radius: 7px;
-  background-color:cornflowerblue
+  background-color:cornflowerblue;
   color: white;
   text-align: center;
 }
@@ -103,6 +103,7 @@ select{
 }
 .dltBtn{
   padding: 0px 15px;
+  background-color:cornflowerblue;
 }
 .addUser{
   padding: 0px 25px;

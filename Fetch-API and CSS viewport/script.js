@@ -1,10 +1,9 @@
-// TODO Add userId instead of 'name' (modify createTodo function)  DONE
-// TODO When checking or unchecking a todo, use an event listener to modify data 
-// TODO UI Improvements remove users section and add input field with dropdown aboth table (look like a tr) DONE
-// TODO UI Improvements - improve layout by removing scrolling from document and have elements take up 100% of screen
-// TODO refactoring   DONE
-// TODO Add a new button next to each todo, that would remove it from the list and data   DONE
+import {con,another} from "./test"
+con();
+another();
 // BONUS add option for pressing enter instead of Add todo button DONE
+// Refactor js with rollup
+
 let custom_Title, custom_Completed, user_section, select, URL, data_table, data, addUser_btn;
 custom_Title = document.querySelector("#Title");
 custom_Completed = document.querySelector("#Completed");
@@ -21,8 +20,8 @@ async function startUp() {
   data = await response.json();
   renderInitialTodoList(data);
   createAllOptions(data);
-  console.log(data.length);
 }
+
 startUp();
 
 function addUserNow(element) {
