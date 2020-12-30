@@ -103,7 +103,7 @@ select{
 }
 .dltBtn{
   padding: 0px 15px;
-  background-color:cornflowerblue;
+  background-color: rgb(122, 149, 0)
 }
 .addUser{
   padding: 0px 25px;
@@ -128,4 +128,25 @@ box-shadow: 2px 2px red;
 
 label{
   margin-left: 15px;
+}
+#lStorage{
+  background-color:black;
+  width: 40vw;
+  margin: 4px auto;
+  height: 100px;
+  text-align: left;
+  padding: 4px;
+}
+#lStorage > li{
+  list-style: none;
+  color: white;
+  font-size: 0.8rem;
+}
+.reply{
+padding: 5px;
+}
+.reply button{
+  padding: 0 15px;
+  margin: 4px ;
+  background-color: rgb(122, 149, 0)
 }

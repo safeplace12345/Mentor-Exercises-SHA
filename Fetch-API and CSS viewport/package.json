@@ -5,7 +5,7 @@
   "main": "base.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rollup src/script.js --file dist/base.js"
+    "build": "rollup src/script.js --file dist/base.js -w"
   },
   "author": "",
   "license": "ISC",

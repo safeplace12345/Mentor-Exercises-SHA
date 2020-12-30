@@ -2,9 +2,10 @@ import {user_section,select,URL,data_table,addUser_btn } from "./querySelector"
 import {createInput} from "./createInput"
 import {createTodo} from "./createTodo"
 import {createDelBtn} from "./createDelete"
+import {lStorage} from        "./localStore"
 let data = [];
 addUser_btn.addEventListener("click", function(){
-  addUserNow(data)
+  addTodo(data)
 })
 async function startUp() {
   const response = await fetch(URL);
@@ -68,9 +69,10 @@ const changeStatus = (e, arg) => {
   }
 }
 
-function addUserNow(dataEl) {
+function addTodo(dataEl) {
   let custom_Title = document.querySelector("#Title").value;
   let newTodo = createTodo(custom_Title,select.value,data);
   dataEl.push(newTodo);
   addTodoInTheList(newTodo);
 };
+lStorage();
