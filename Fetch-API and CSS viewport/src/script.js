@@ -1,8 +1,3 @@
-import {con,another} from "./test"
-con();
-another();
-// BONUS add option for pressing enter instead of Add todo button DONE
-// Refactor js with rollup
 
 let custom_Title, custom_Completed, user_section, select, URL, data_table, data, addUser_btn;
 custom_Title = document.querySelector("#Title");
