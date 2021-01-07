@@ -9,3 +9,13 @@ export const lStorage = () => {
  }
 
 }
+
+export const Local_store = (arg) =>{
+    const toJson = JSON.stringify(arg)
+    if(localStorage){
+        localStorage.setItem('data' , toJson);
+    }
+    let data = localStorage.getItem('data')
+    let dataBase = JSON.parse(data);
+    return dataBase;   
+}

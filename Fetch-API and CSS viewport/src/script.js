@@ -2,16 +2,17 @@ import {user_section,select,URL,data_table,addUser_btn } from "./querySelector"
 import {createInput} from "./createInput"
 import {createTodo} from "./createTodo"
 import {createDelBtn} from "./createDelete"
-import {lStorage} from        "./localStore"
+import {lStorage,Local_store} from        "./localStore"
 let data = [];
-addUser_btn.addEventListener("click", function(){
-  addTodo(data)
-})
 async function startUp() {
   const response = await fetch(URL);
   data = await response.json();
-  renderInitialTodoList(data);
-  createAllOptions(data);
+  let dataBase = Local_store(data);
+  renderInitialTodoList(dataBase);
+  createAllOptions(dataBase);
+  addUser_btn.addEventListener("click", function(){
+    addTodo(dataBase)
+  })
 }
 
 startUp();
@@ -71,8 +72,9 @@ const changeStatus = (e, arg) => {
 
 function addTodo(dataEl) {
   let custom_Title = document.querySelector("#Title").value;
-  let newTodo = createTodo(custom_Title,select.value,data);
+  let newTodo = createTodo(custom_Title,select.value,dataEl);
   dataEl.push(newTodo);
+  console.log(dataEl.indexOf(newTodo))
   addTodoInTheList(newTodo);
 };
 lStorage();
