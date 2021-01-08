@@ -45,7 +45,8 @@ const renderInitialTodoList = (arg) => {
 const addTodoInTheList = (todo, arg) => {
   let table_cell = document.createElement("tr");
   table_cell.classList.add("tr-class", "tb-class");
-  table_cell.setAttribute('id', todo.id)
+  table_cell.setAttribute('id', todo.id )
+  // console.log(todo.id)
   table_cell.innerHTML = `<td> ${todo.userId} </td> 
   <td> ${todo.title} </td> 
   <td class='completed'> ${todo.completed} </td>
@@ -58,8 +59,8 @@ const appendToDataTable =(cell,cellarg,Cell)=>{
   data_table.appendChild(Cell);
 }
 const changeStatus = (e, arg) => {
+  let id;
   if (e.target.checked) {
-    let id;
     arg.completed = true;
     id = document.getElementById(arg.id).children[2];
     id.innerHTML = arg.completed;
@@ -75,6 +76,6 @@ function addTodo(dataEl) {
   let newTodo = createTodo(custom_Title,select.value,dataEl);
   dataEl.push(newTodo);
   console.log(dataEl.indexOf(newTodo))
-  addTodoInTheList(newTodo);
+  addTodoInTheList(newTodo,dataEl);
 };
 lStorage();
