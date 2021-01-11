@@ -21,7 +21,9 @@ export const Local_store = (arg) =>{
 }
 
 export const addToLstore =  (arg) => {
-    localStorage.setItem()
+    const toJson = JSON.stringify(arg)
+    localStorage.setItem('data' , toJson)
+    // console.log(localStorage.getItem('data'))
 }
 
 // or create both to append to database or the localStorage itself as a new

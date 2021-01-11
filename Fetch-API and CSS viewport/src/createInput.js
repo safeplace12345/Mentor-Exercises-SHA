@@ -9,6 +9,7 @@ export const createInput = (arg,cSs) => {
     checkbox.classList.add = 'check';
     checkbox.checked = arg.completed !== true ? false : true;
     checkbox.addEventListener('click', function (e) {
+        console.log(arg)
         cSs(e, arg);
     })
     td.appendChild(checkbox)
