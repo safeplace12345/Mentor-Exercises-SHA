@@ -3,16 +3,17 @@ import {createInput} from "./createInput"
 import {createTodo} from "./createTodo"
 import {createDelBtn} from "./createDelete"
 import {lStorage,Local_store,addToLstore} from        "./localStore"
+import todoModel from "./data/todos"
 let data = [];
 async function startUp() {
-  const response = await fetch(URL);
-  data = await response.json();
-  let dataBase = Local_store(data);
+  let dataBase = await todoModel.init();
   renderInitialTodoList(dataBase);
   const userIds = getUniqueUserIdsArray(dataBase)
   addUserOptions(userIds);
   addUser_btn.addEventListener("click", function(){
-    addTodo(dataBase)
+      let title = document.querySelector("#Title").value;
+      let userId = selectUsersField.value;
+    addTodo(title,userId)
   })
 }
 
@@ -37,7 +38,7 @@ const renderInitialTodoList = (todos) => {
   }
 }
 
-const addTodoInTheList = (todo, arg) => {
+const addTodoInTheList = (todo) => {
   let table_cell = document.createElement("tr");
   table_cell.classList.add("tr-class", "tb-class");
   table_cell.setAttribute('id', todo.id )
@@ -45,17 +46,19 @@ const addTodoInTheList = (todo, arg) => {
   <td> ${todo.title} </td> 
   <td class='completed'> ${todo.completed} </td>
   `;
-  appendToDataTable(table_cell, arg, table_cell);
+  appendToDataTable(table_cell ,todo);
 };
 
-const appendToDataTable =(cell,cellarg,Cell)=>{
-  cell.appendChild(createInput(todo,changeStatus));
-  cell.appendChild(createDelBtn(todo, cellarg, Cell,data_table))
-  data_table.appendChild(Cell);
+const appendToDataTable =(cell , todo)=>{
+  let newInput = createInput(todo,changeStatus)
+  cell.appendChild(newInput);
+  cell.appendChild(createDelBtn(todo, cell,data_table))
+  data_table.appendChild(cell);
 }
 const changeStatus = (e, arg) => {
+// console.log(e,arg)
   let id = document.getElementById(arg.id).children[2];
-  console.log(id.parentElement)
+ console.log(id)
   if (e.target.checked) {
     arg.completed = true;
     id.innerHTML = arg.completed;
@@ -65,12 +68,9 @@ const changeStatus = (e, arg) => {
   }
 }
 
-function addTodo(dataEl) {
-  let custom_Title = document.querySelector("#Title").value;
-  let newTodo = createTodo(custom_Title,selectUsersField.value,dataEl);
-  dataEl.push(newTodo);
-  addToLstore(dataEl)
-  addTodoInTheList(newTodo,dataEl);
+function addTodo(title,userId) {
+  let newTodo = todoModel.addTodo(title, userId)
+  addTodoInTheList(newTodo);
 };
 lStorage();
 // addToLstore()

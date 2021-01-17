@@ -15,7 +15,7 @@ const getTodos = () => {
     return dataBase;
 }
 const addTodo = (title, userId) => {
-    let todoIds = database.map(todo => todo.id)
+    let todoIds = dataBase.map(todo => todo.id)
     const newTodo = {
         userId,
         title,
