@@ -11,6 +11,8 @@ export const createDelBtn = (todo, todoList, rowDlt,table) => {
 }
 const deleteToDo = (todo,td,tb,rD) => {
   td.splice(td.indexOf(todo), 1);
+
+  // here 
   tb.removeChild(rD);
   console.log(todo)
 }

@@ -1,4 +1,4 @@
-import {user_section,select,URL,data_table,addUser_btn } from "./querySelector"
+import {user_section,selectUsersField,URL,data_table,addUser_btn } from "./querySelector"
 import {createInput} from "./createInput"
 import {createTodo} from "./createTodo"
 import {createDelBtn} from "./createDelete"
@@ -9,7 +9,8 @@ async function startUp() {
   data = await response.json();
   let dataBase = Local_store(data);
   renderInitialTodoList(dataBase);
-  createAllOptions(dataBase);
+  const userIds = getUniqueUserIdsArray(dataBase)
+  addUserOptions(userIds);
   addUser_btn.addEventListener("click", function(){
     addTodo(dataBase)
   })
@@ -17,27 +18,22 @@ async function startUp() {
 
 startUp();
 
-const createAllOptions = (arg) => {
-  for (user of manipulateIds(arg)) {
-    const optionEl = document.createElement("option");
-    optionEl.innerHTML = 'User ' + user;
-    optionEl.value = user;
-    select.appendChild(optionEl);
+const addUserOptions = (users) => {
+  for (user of users) {
+    const userOptionEl = document.createElement("option");
+    userOptionEl.innerHTML = 'User ' + user;
+    userOptionEl.value = user;
+    selectUsersField.appendChild(userOptionEl);
   }
 };
-const manipulateIds = (arg) => {
-  let catchIds = [];
-  for (user of arg) {
-    catchIds.push(user.userId);
-  }
-  const user_id_container = [new Set(catchIds)];
-  const obj = Array.from(user_id_container[0]);
-  return obj;
+const getUniqueUserIdsArray = (todos) => {
+  let userIds = todos.map(todo => todo.userId)
+  return [...new Set(userIds)];
 };
 
-const renderInitialTodoList = (arg) => {
-  for (todo of arg) {
-    addTodoInTheList(todo, arg);
+const renderInitialTodoList = (todos) => {
+  for (todo of todos) {
+    addTodoInTheList(todo, todos);
   }
 }
 
@@ -71,7 +67,7 @@ const changeStatus = (e, arg) => {
 
 function addTodo(dataEl) {
   let custom_Title = document.querySelector("#Title").value;
-  let newTodo = createTodo(custom_Title,select.value,dataEl);
+  let newTodo = createTodo(custom_Title,selectUsersField.value,dataEl);
   dataEl.push(newTodo);
   addToLstore(dataEl)
   addTodoInTheList(newTodo,dataEl);
